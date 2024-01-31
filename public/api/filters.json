@@ -1,0 +1,39 @@
+{
+	"location": [
+		{"label": "Banaglore", "value": "Banaglore"},
+		{"label": "Chennai", "value": "Chennai"},
+		{"label": "Hydrabad", "value": "Hydrabad"},
+		{"label": "Delhi", "value": "Delhi"}
+	],
+	"carType": [
+		{"label": "Hatchback", "value": "Hatchback"},
+		{"label": "Sedan", "value": "Sedan"},
+		{"label": "SUV", "value": "SUV"}
+	],
+	"brand": [
+		{"label": "Wagon R", "value": "wagonr"},
+		{"label": "Celerio", "value": "celerio"},
+		{"label": "Swift", "value": "swift"},
+		{"label": "Swift Dzire", "value": "swift-dzire"}
+	],
+	"owners": [
+		{"label": "1st Owner", "value": 1},
+		{"label": "2nd Owner", "value": 2},
+		{"label": "3rd Owner", "value": 3}
+	],
+	"budget": [
+		{"label": "Less than 2L", "value": "lessThan2"},
+		{"label": "2L - 4L", "value": "twoToFour"},
+		{"label": "4L - 6L", "value": "fourToSix"},
+		{"label": "More than 6L", "value": "moreThanSix"}
+	],
+	"fuelType": [
+		{"label": "Petrol", "value": "petrol"},
+		{"label": "Diesel", "value": "diesel"},
+		{"label": "CNG", "value": "cng"}
+	],
+	"transmission": [
+		{"label": "Manual", "value": "manual"},
+		{"label": "Automatic", "value": "automatic"}
+	]
+}

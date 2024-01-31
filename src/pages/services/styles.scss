@@ -1,0 +1,36 @@
+.service-wrapper {
+	display: grid;
+	grid-template-columns: 20rem 1fr;
+	height: 100%;
+}
+.filter-wrapper {
+	background: #fff;
+	padding: 1rem;
+	height: calc(100vh - 5rem);
+	overflow: auto;
+}
+.ovel-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	.radio-ovel {
+		input {
+			appearance: none;
+		}
+		border: 2px solid #e8e8e8;
+		border-radius: 15px;
+		padding: 5px 15px;
+	}
+}
+.selected {
+	border: 2px solid #000;
+	background: #e8e8e8;
+	color: #000;
+}
+.noDataLabel {
+	font-size: 1.5rem;
+	color: #000;
+}
+.show-results-wrapper {
+	padding: 1rem;
+}

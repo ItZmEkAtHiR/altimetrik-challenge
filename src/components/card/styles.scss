@@ -1,0 +1,18 @@
+.card-wrapper {
+	width: 15rem;
+	height: 10rem;
+	background: #fff;
+	border-radius: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	cursor: pointer;
+	img {
+		height: 6rem;
+		width: 6rem;
+	}
+	p {
+		color: #949494;
+	}
+}
