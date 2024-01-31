@@ -8,7 +8,7 @@ const ShowResults: React.FC = () => {
 	const filterContext = useContext(FilterContext);
 	return (
 		<div className="show-results-wrapper">
-			{(filterContext?.carInfo || []).length > 0 ? (
+			{(filterContext?.filteredData || []).length > 0 ? (
 				<div className="wrap">
 					{(filterContext?.carInfo || []).map((manufacturer, index) => (
 						<Card logo={logo} text={manufacturer.model} key={index} />
