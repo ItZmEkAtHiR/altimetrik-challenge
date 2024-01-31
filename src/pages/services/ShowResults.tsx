@@ -10,12 +10,12 @@ const ShowResults: React.FC = () => {
 		<div className="show-results-wrapper">
 			{(filterContext?.filteredData || []).length > 0 ? (
 				<div className="wrap">
-					{(filterContext?.filteredData || []).map((manufacturer, index) => (
-						<Card logo={logo} text={manufacturer.model} key={index} />
+					{(filterContext?.filteredData || []).map((car, index) => (
+						<Card logo={logo} text={car.model} key={index} />
 					))}
 				</div>
 			) : (
-				<div className="">
+				<div className="label-Wrapper">
 					<label className="noDataLabel">No data to display</label>
 				</div>
 			)}
