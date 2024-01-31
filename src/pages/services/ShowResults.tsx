@@ -10,7 +10,7 @@ const ShowResults: React.FC = () => {
 		<div className="show-results-wrapper">
 			{(filterContext?.filteredData || []).length > 0 ? (
 				<div className="wrap">
-					{(filterContext?.carInfo || []).map((manufacturer, index) => (
+					{(filterContext?.filteredData || []).map((manufacturer, index) => (
 						<Card logo={logo} text={manufacturer.model} key={index} />
 					))}
 				</div>
