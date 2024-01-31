@@ -1,30 +1,20 @@
-import React, {useState} from "react";
-import {filterType, dropdownType} from ".";
+import React, {useContext} from "react";
+import {filterType, dropdownType, FilterContext} from ".";
 import Select from "react-select";
 
 interface filterProps {
 	options: filterType | null;
 }
 
-type filterState = {
-	location?: dropdownType;
-	carType?: dropdownType;
-	brand?: Array<string>;
-	owners?: number;
-	budget?: string;
-	fuelType?: string;
-	transmission?: string;
-};
-
 const Filter: React.FC<filterProps> = (props: filterProps) => {
-	const [filters, setFilters] = useState<filterState | null>(null);
+	const filterContext = useContext(FilterContext);
 
 	const handleSelectChange = (option: dropdownType | null, type: string) => {
-		setFilters({...filters, [type]: option});
+		filterContext?.setFilters({...filterContext?.filters, [type]: option});
 	};
 
 	const handleCheckboxChange = (value: string) => {
-		setFilters((prevSelectedOptions) => {
+		filterContext?.setFilters((prevSelectedOptions) => {
 			if ((prevSelectedOptions?.brand || []).includes(value)) {
 				const brand = (prevSelectedOptions?.brand || []).filter(
 					(option) => option !== value
@@ -38,7 +28,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 	};
 
 	const handleRadioChange = (value: number | string, type: string) => {
-		setFilters((prev) => ({...prev, [type]: value}));
+		filterContext?.setFilters((prev) => ({...prev, [type]: value}));
 	};
 
 	return (
@@ -46,7 +36,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 			<div className="flex-column-gap-1">
 				<label>Location:</label>
 				<Select
-					value={filters?.location}
+					value={filterContext?.filters?.location}
 					onChange={(option) => {
 						handleSelectChange(option, "location");
 					}}
@@ -57,7 +47,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 			<div className="flex-column-gap-1">
 				<label>Body Type:</label>
 				<Select
-					value={filters?.carType}
+					value={filterContext?.filters?.carType}
 					options={props?.options?.carType}
 					onChange={(option) => {
 						handleSelectChange(option, "carType");
@@ -74,7 +64,9 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 							<input
 								type="checkbox"
 								value={option.value}
-								checked={(filters?.brand || []).includes(option.value as string)}
+								checked={(filterContext?.filters?.brand || []).includes(
+									option.value as string
+								)}
 								onChange={() => handleCheckboxChange(option.value as string)}
 							/>
 							<span>{option.label}</span>
@@ -90,7 +82,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 							<input
 								type="radio"
 								value={option.value}
-								checked={filters?.owners === option.value}
+								checked={filterContext?.filters?.owners === option.value}
 								onChange={() => handleRadioChange(option.value as number, "owners")}
 							/>
 							{option.label}
@@ -102,7 +94,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 				<label>Budget:</label>
 				<div className="ovel-wrapper">
 					{(props?.options?.budget || []).map((option) => {
-						const isChecked = filters?.budget === option.value;
+						const isChecked = filterContext?.filters?.budget === option.value;
 						return (
 							<label
 								className={`pointer radio-ovel ${isChecked && "selected"}`}
@@ -128,7 +120,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 							<input
 								type="radio"
 								value={option.value}
-								checked={filters?.fuelType === option.value}
+								checked={filterContext?.filters?.fuelType === option.value}
 								onChange={() => handleRadioChange(option.value as string, "fuelType")}
 							/>
 							{option.label}
@@ -144,7 +136,7 @@ const Filter: React.FC<filterProps> = (props: filterProps) => {
 							<input
 								type="radio"
 								value={option.value}
-								checked={filters?.transmission === option.value}
+								checked={filterContext?.filters?.transmission === option.value}
 								onChange={() =>
 									handleRadioChange(option.value as string, "transmission")
 								}

@@ -35,9 +35,7 @@ interface FilterContextProps {
 	filteredData: Array<FormState> | null;
 }
 
-export const FilterContext = createContext<FilterContextProps | undefined>(
-	undefined
-);
+export const FilterContext = createContext<FilterContextProps | null>(null);
 
 const Services: React.FC = () => {
 	const [filterOption, setFilterOption] = useState<filterType>({});
@@ -74,19 +72,23 @@ const Services: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		if (carInfo !== null && filters !== null) {
+		if (carInfo !== null) {
 			const filteredResults = carInfo.filter((car) => {
 				return (
-					(!filters.location || car.location === filters.location.value) &&
+					(!filters?.location ||
+						car.location.toLocaleLowerCase() ===
+							(filters.location.value as string).toLocaleLowerCase()) &&
 					// (!filters.carType || car.carType === filters.carType.value) &&
-					(!filters.brand || filters.brand.includes(car.model)) &&
-					(!filters.owners || Number(car.owners) === filters.owners) &&
+					(!filters?.brand ||
+						filters.brand.includes(car.model.toLocaleLowerCase())) &&
+					(!filters?.owners || Number(car.owners) === filters.owners) &&
 					// (!filters.budget || car.budget === filters.budget) &&
 					// (!filters.fuelType || car.fuelType === filters.fuelType) &&
-					(!filters.transmission || car.transmission === filters.transmission)
+					(!filters?.transmission ||
+						car.transmission === filters.transmission.toLowerCase())
 				);
 			});
-
+			console.log(filteredResults);
 			setFilteredData(filteredResults);
 		}
 	}, [filters]);

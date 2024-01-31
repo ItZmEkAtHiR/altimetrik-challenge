@@ -6,11 +6,15 @@ import "./styles.scss";
 
 const ShowResults: React.FC = () => {
 	const filterContext = useContext(FilterContext);
+	const dataToDisplay =
+		filterContext?.filters !== null
+			? filterContext?.filteredData
+			: filterContext?.carInfo;
 	return (
 		<div className="show-results-wrapper">
-			{(filterContext?.filteredData || []).length > 0 ? (
+			{(dataToDisplay || []).length > 0 ? (
 				<div className="wrap">
-					{(filterContext?.filteredData || []).map((car, index) => (
+					{(dataToDisplay || []).map((car, index) => (
 						<Card logo={logo} text={car.model} key={index} />
 					))}
 				</div>
